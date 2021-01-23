@@ -6,6 +6,30 @@ The use of **Ubuntu 16.04 and ROS Kinetic** is assumed everywhere on this reposi
 
 This repository contains a framework for the architecture of an autonomous FS race car, with basic dummy nodes to illustrate how to organise code. Some helpful tools are also included.
 
+# Running as a Docker Container
+
+You can download and run the adityang5/fsd:vnc container using the following command
+
+```bash
+sudo docker run -it --rm -p 6080:80 -p 5900:5900 adityang5/fsd:vnc
+```
+
+Proceed to login via ssh localhost:5900. In two seperate terminals
+
+Launch the fssim_interface
+```bash
+	source ~/fsd_skeleton/fsd_environment.sh
+	roslaunch fssim_interface fssim.launch
+```
+
+Next launch the control_meta
+```bash
+	source ~/fsd_skeleton/fsd_environment.sh
+	roslaunch control_meta trackdrive.launch
+```
+
+Within the docker container, the code is available at ~/fsd_skeleton
+
 # Repository organisation
 
 The code is organised in several top level packages/directories. The top level should adhere to the following subdivision of functionality (a more detailed description can be found in the folders themselves):
