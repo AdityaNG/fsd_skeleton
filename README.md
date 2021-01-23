@@ -18,17 +18,19 @@ Proceed to login via ssh localhost:5900. In two seperate terminals
 
 Launch the fssim_interface
 ```bash
-	source ~/fsd_skeleton/fsd_environment.sh
-	roslaunch fssim_interface fssim.launch
+source ~/fsd_skeleton/fsd_environment.sh
+roslaunch fssim_interface fssim.launch
 ```
 
 Next launch the control_meta
 ```bash
-	source ~/fsd_skeleton/fsd_environment.sh
-	roslaunch control_meta trackdrive.launch
+source ~/fsd_skeleton/fsd_environment.sh
+roslaunch control_meta trackdrive.launch
 ```
 
 Within the docker container, the code is available at ~/fsd_skeleton
+
+To create your own container, follow the instructions here : [DOCKER.md](DOCKER.md)
 
 # Repository organisation
 
