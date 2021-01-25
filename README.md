@@ -9,7 +9,6 @@ This repository contains a framework for the architecture of an autonomous FS ra
 # Running as a Docker Container
 
 You can download and run the adityang5/fsd:vnc container using the following command
-
 ```bash
 sudo docker run -it --rm -p 6080:80 -p 5900:5900 adityang5/fsd:vnc
 ```

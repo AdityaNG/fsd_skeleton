@@ -3,6 +3,7 @@
 The following set of commands differ as they are either executed on
 1. Your machine                 \[METAL\]
 2. Inside the Docker Container  \[DOCKER\]
+
 The above labels will signify the same
 
 ## With VNC
@@ -13,29 +14,7 @@ Download and run the following ros-kinetic docker with vnc enabled on port 5900 
 sudo docker run -it --rm -p 6080:80 -p 5900:5900 ct2034/vnc-ros-kinetic-full
 ```
 
-If you opted to use the container with VNC, use a VNC Viwer to login to localhost:5900
-
-## Without VNC [Better Frame Rates]
-
-Alternatively, you can use this container which does not use VNC.
-```bash
-# [METAL]
-sudo docker run -it \
-    --env="DISPLAY" \
-    --env="QT_X11_NO_MITSHM=1" \
-    --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
-    osrf/ros:kinetic-desktop-full \
-    rqt
-export containerId=$(docker ps -l -q)
-```
-If you opted to use the contianer without VNCm in another terminal, use the ps command to find the container you ust launched and use it to login
-
-```bash
-# [METAL]
-sudo docker ps 		# To get Container ID [CID]
-sudo docker container exec -it [CID] bash
-```
-
+If you opted to use the container with VNC, use a VNC Viwer to login to localhost:5900. You should be able to open a shell via the GUI
 
 ## Getting the container setup
 
@@ -48,7 +27,7 @@ sudo apt upgrade
 
 sudo apt-get install checkinstall ros-kinetic-catkin python-catkin-tools
 ```
-Now clone the repos and run `./update_dependencies.sh -f`
+Now clone the repos and run `./update_dependencies.sh -f`. After sourcing setup.bash you can run `catkin build`
 
 ```bash
 # [DOCKER]
@@ -58,6 +37,10 @@ git clone https://github.com/AMZ-Driverless/fssim.git
 cd ~/fsd_skeleton
 
 ./update_dependencies.sh -f
+
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+
 catkin build
 ```
 
@@ -88,3 +71,14 @@ Use docker commit to save the container so you can get back to it later
 docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
 ```
 
+To list out the saved images use 
+```bash
+# [METAL]
+sudo docker images
+```
+
+To run your image again, use 
+```bash
+# [METAL]
+sudo docker run -it --rm -p 6080:80 -p 5900:5900 [REPOSITORY[:TAG]]
+```
